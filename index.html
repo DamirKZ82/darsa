@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darsa Solutions — iDüken, ToiApp, Bota</title>
+<meta name="description" content="ТОО Darsa Solutions делает программы для бизнеса в Казахстане: iDüken для розничных магазинов, ToiApp для поиска ресторанов, тамады и артистов на той, Bota — ИИ‑агент внутри 1С.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@500;800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff;
+    --ink:#17161a;
+    --mist:#6e6b76;
+    --line:#e6e4ea;
+    --duken:#f0641e;
+    --toi:#c8264f;
+    --bota:#1e7b5f;
+    --display:"Geologica", "Arial Black", sans-serif;
+    --body:"Onest", "Segoe UI", Arial, sans-serif;
+    --mono:"JetBrains Mono", Consolas, monospace;
+    --w: min(1180px, 100% - 2 * clamp(20px, 5vw, 64px));
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:1.0625rem;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:.5rem .75rem;z-index:10}
+  .skip:focus{left:8px}
+  .wrap{width:var(--w);margin-inline:auto}
+
+  /* nav */
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 0}
+  .brand{display:flex;align-items:baseline;gap:.6rem;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+  .brand small{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--mist);letter-spacing:.06em;text-transform:uppercase}
+  .nav ul{list-style:none;display:flex;gap:1.5rem;margin:0;padding:0}
+  .nav li a{text-decoration:none;font-weight:500;font-size:.95rem;padding:.25rem 0;border-bottom:2px solid transparent}
+  .nav li a:hover{border-bottom-color:currentColor}
+  .nav li a[data-p="duken"]:hover{color:var(--duken)}
+  .nav li a[data-p="toi"]:hover{color:var(--toi)}
+  .nav li a[data-p="bota"]:hover{color:var(--bota)}
+  @media (max-width:640px){.nav ul{display:none}}
+
+  /* hero */
+  .hero{padding:clamp(2.5rem,7vw,6rem) 0 clamp(3rem,8vw,7rem)}
+  .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);margin:0 0 1.5rem}
+  .words{list-style:none;margin:0 0 clamp(2rem,4vw,3rem);padding:0;display:grid;gap:clamp(.25rem,1vw,.6rem)}
+  .words li{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:clamp(.75rem,2vw,1.5rem)}
+  .words b{font-family:var(--display);font-weight:800;font-size:clamp(3.2rem,13vw,8.5rem);line-height:.98;letter-spacing:-.03em;text-transform:uppercase}
+  .words span{font-family:var(--mono);font-size:clamp(.78rem,1.4vw,1rem);color:var(--mist);white-space:nowrap}
+  .words .duken b{color:var(--duken)}
+  .words .toi b{color:var(--toi)}
+  .words .bota b{color:var(--bota)}
+  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(1.35rem,2.8vw,2.1rem);line-height:1.25;letter-spacing:-.02em;margin:0 0 1rem;max-width:22ch}
+  .hero p{max-width:56ch;margin:0 0 2rem;font-size:1.125rem;color:#3d3b45}
+  @media (min-width:1040px){
+    .hero .split{display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,5vw,5rem);align-items:end}
+    .words{margin-bottom:0}
+    .hero h1{font-size:1.75rem;max-width:24ch}
+    .hero .thesis{padding-bottom:.35em}
+  }
+  @media (max-width:640px){
+    .eyebrow{font-size:.7rem;letter-spacing:.04em}
+    .words li{grid-template-columns:1fr;row-gap:.15rem}
+    .words span{white-space:normal}
+  }
+  .cta{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:.85rem 1.35rem;border-radius:4px;background:var(--ink);color:#fff}
+  .btn:hover{background:#000}
+  .link{font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--line)}
+  .link:hover{border-bottom-color:currentColor}
+
+  /* load sequence */
+  @media (prefers-reduced-motion:no-preference){
+    .words li{opacity:0;transform:translateY(.35em);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+    .words li:nth-child(2){animation-delay:.18s}
+    .words li:nth-child(3){animation-delay:.36s}
+    .hero h1,.hero p,.cta{opacity:0;animation:rise .7s .6s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes rise{to{opacity:1;transform:none}}
+  }
+
+  /* products */
+  .product{border-top:1px solid var(--line);padding:clamp(3rem,7vw,6rem) 0}
+  .product .grid{display:grid;grid-template-columns:minmax(220px,2fr) 3fr;gap:clamp(1.5rem,5vw,5rem);align-items:start}
+  .mark{aspect-ratio:1/1;border-radius:6px;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1rem,2.4vw,1.75rem);color:#fff;position:sticky;top:1.5rem}
+  .mark b{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.2vw,4.6rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;word-break:break-word}
+  .mark span{font-family:var(--mono);font-size:.8rem;opacity:.9}
+  .product--duken .mark{background:var(--duken)}
+  .product--toi .mark{background:var(--toi)}
+  .product--bota .mark{background:var(--bota)}
+  .product h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3vw,2.3rem);letter-spacing:-.02em;line-height:1.1;margin:0 0 .5rem}
+  .product .tag{font-size:1.25rem;font-weight:500;margin:0 0 1.5rem;max-width:40ch;line-height:1.35}
+  .product--duken h2{color:var(--duken)}
+  .product--toi h2{color:var(--toi)}
+  .product--bota h2{color:var(--bota)}
+  .facts{list-style:none;margin:0 0 1.75rem;padding:0;display:grid;gap:1rem;max-width:60ch}
+  .facts li{padding-left:1.1rem;position:relative}
+  .facts li::before{content:"";position:absolute;left:0;top:.62em;width:.45rem;height:.45rem;border-radius:50%;background:currentColor}
+  .facts strong{display:block;font-weight:600}
+  .facts p{margin:.15rem 0 0;color:#3d3b45}
+  .price{font-family:var(--mono);font-size:.95rem;color:var(--mist);margin:0 0 1.25rem}
+  .price b{color:var(--ink);font-weight:500}
+  .note{font-family:var(--mono);font-size:.78rem;color:var(--mist);margin:.75rem 0 0}
+  @media (max-width:760px){
+    .product .grid{grid-template-columns:1fr}
+    .mark{aspect-ratio:auto;position:static;flex-direction:row;align-items:baseline;gap:1rem}
+  }
+
+  /* about */
+  .about{border-top:1px solid var(--line);padding:clamp(3rem,7vw,6rem) 0}
+  .about .grid{display:grid;grid-template-columns:minmax(220px,2fr) 3fr;gap:clamp(1.5rem,5vw,5rem)}
+  .about h2{font-family:var(--display);font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin:0}
+  .about p{margin:0 0 1rem;max-width:60ch;font-size:1.125rem}
+  dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.5rem;margin:1.75rem 0 0;font-family:var(--mono);font-size:.88rem}
+  dt{color:var(--mist)}
+  dd{margin:0}
+  @media (max-width:760px){.about .grid{grid-template-columns:1fr}}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:2rem 0 3rem}
+  footer .row{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:baseline;font-size:.9rem;color:var(--mist)}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--ink)}
+  footer .tel{font-family:var(--mono);color:var(--ink);font-size:1.05rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="wrap nav">
+  <a class="brand" href="#top">Darsa Solutions <small>Казахстан</small></a>
+  <nav aria-label="Продукты">
+    <ul>
+      <li><a href="#iduken" data-p="duken">iDüken</a></li>
+      <li><a href="#toiapp" data-p="toi">ToiApp</a></li>
+      <li><a href="#bota" data-p="bota">Bota</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <p class="eyebrow">ТОО Darsa Solutions · программы для бизнеса в Казахстане</p>
+    <div class="split">
+      <ul class="words" aria-label="Три продукта">
+        <li class="duken"><b lang="kk">Дүкен</b><span>магазин → iDüken</span></li>
+        <li class="toi"><b lang="kk">Той</b><span>праздник → ToiApp</span></li>
+        <li class="bota"><b lang="kk">Бота</b><span>верблюжонок → Bota, ИИ‑агент в 1С</span></li>
+      </ul>
+      <div class="thesis">
+        <h1>Три обычных слова. Три программы для дел, которые у бизнеса уже есть.</h1>
+        <p>Мы не придумываем новые потребности. Магазин надо считать, на той надо найти зал и тамаду, в 1С надо получить ответ. Darsa делает инструменты ровно для этого, на русском и казахском, в тенге и по правилам Казахстана.</p>
+        <div class="cta">
+          <a class="btn" href="#iduken">Смотреть продукты</a>
+          <a class="link" href="tel:+77019500252">Позвонить: +7 701 950 02 52</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="product product--duken" id="iduken">
+    <div class="wrap grid">
+      <div class="mark" aria-hidden="true"><b lang="kk">Дүкен</b><span>розница</span></div>
+      <div>
+        <h2>iDüken</h2>
+        <p class="tag">Касса, склад и деньги магазина в одной программе. Видно, где заработали, а где потеряли.</p>
+        <ul class="facts">
+          <li><strong>Касса не останавливается без интернета</strong><p>Чеки копятся на компьютере и уходят на сервер, как только связь вернётся. Смена закрывается одной суммой, расхождение видно сразу.</p></li>
+          <li><strong>Склад ведётся сам</strong><p>Приход по накладной, списания, перемещения между точками, инвентаризация. Каждое движение остаётся в материальном отчёте.</p></li>
+          <li><strong>Несколько точек в одном кабинете</strong><p>Товары и цены общие, остатки и выручка у каждой свои. Сотрудник видит свой магазин, владелец видит все.</p></li>
+          <li><strong>Название товара из Национального каталога</strong><p>Сканируете штрихкод, название подставляется из справочника НКТ по коду NTIN.</p></li>
+          <li><strong>Владелец смотрит с телефона</strong><p>Выручка, прибыль, что заканчивается, что залежалось, что ушло в минус.</p></li>
+        </ul>
+        <p class="price">от <b>15 990 ₸</b> в месяц за одну точку · <b>89 990 ₸</b> за сеть до 10 точек</p>
+        <a class="link" href="https://iduken.kz" rel="noopener">Открыть iduken.kz</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="product product--toi" id="toiapp">
+    <div class="wrap grid">
+      <div class="mark" aria-hidden="true"><b lang="kk">Той</b><span>праздники</span></div>
+      <div>
+        <h2>ToiApp</h2>
+        <p class="tag">Всё для тоя в вашем городе. Ресторан, тамада, артисты, повара, фото и видео, ивент‑агентства.</p>
+        <ul class="facts">
+          <li><strong>Ищете там, где живёте</strong><p>Выбираете город и видите, кто работает рядом: рестораны, тамада, артисты, повара, фотографы и видеографы, ивент‑агентства.</p></li>
+          <li><strong>Свадьба, юбилей и любой другой той</strong><p>Один зал на 300 гостей или кавер‑группа на вечер. Площадка одна, а той у каждого свой.</p></li>
+          <li><strong>Сравниваете и договариваетесь напрямую</strong><p>Фото работ, цены и отзывы в анкете. Пишете исполнителю сами, без посредников.</p></li>
+          <li><strong>Исполнителям тоже сюда</strong><p>Ресторан, тамада или студия размещают анкету и получают заявки из своего города.</p></li>
+        </ul>
+        <a class="link" href="https://toiapp.kz" rel="noopener">Открыть toiapp.kz</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="product product--bota" id="bota">
+    <div class="wrap grid">
+      <div class="mark" aria-hidden="true"><b lang="kk">Бота</b><span>ИИ‑агент в 1С</span></div>
+      <div>
+        <h2>Bota</h2>
+        <p class="tag">ИИ‑агент, который живёт внутри вашей 1С. Спрашиваете словами, получаете данные, документы и объяснения.</p>
+        <ul class="facts">
+          <li><strong>Отвечает по вашей базе</strong><p>«Сколько мы должны поставщикам на конец месяца?» Bota строит запрос к 1С и отвечает цифрой, а не ссылкой на отчёт.</p></li>
+          <li><strong>Создаёт и заполняет документы</strong><p>Счёт, накладная, перемещение. Bota подготовит, бухгалтер проверит и проведёт.</p></li>
+          <li><strong>Действует только там, где разрешено</strong><p>Права пользователя 1С остаются главными. Агент не видит и не меняет то, что закрыто для человека.</p></li>
+          <li><strong>Работает с вашей конфигурацией</strong><p>Бухгалтерия, Управление торговлей, Розница и доработанные базы.</p></li>
+        </ul>
+        <a class="link" href="tel:+77019500252">Обсудить внедрение</a>
+        <p class="note">Описание функций требует подтверждения владельца продукта.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap grid">
+      <h2>О компании</h2>
+      <div>
+        <p>Darsa Solutions — небольшая команда разработчиков в Казахстане. Мы делаем программы, которые работают в реальных условиях: когда в магазине пропал интернет, когда до тоя две недели, а тамады и зала ещё нет, когда бухгалтеру нужен ответ до обеда, а не отчёт на сорок страниц.</p>
+        <p>Каждый продукт закрывает одну задачу целиком, а не десять задач наполовину.</p>
+        <dl>
+          <dt>Компания</dt><dd>ТОО «DARSA Solutions»</dd>
+          <dt>БИН</dt><dd>260940002289</dd>
+          <dt>Страна</dt><dd>Республика Казахстан</dd>
+          <dt>Языки</dt><dd>Казахский, русский</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contacts">
+  <div class="wrap row">
+    <a class="tel" href="tel:+77019500252">+7 701 950 02 52</a>
+    <span>© 2026 ТОО «DARSA Solutions» · iDüken · ToiApp · Bota</span>
+  </div>
+</footer>
+</body>
+</html>
