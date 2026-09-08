@@ -4,263 +4,360 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Darsa Solutions — iDüken, ToiApp, Bota</title>
-<meta name="description" content="ТОО Darsa Solutions делает программы для бизнеса в Казахстане: iDüken для розничных магазинов, ToiApp для поиска ресторанов, тамады и артистов на той, Bota — ИИ‑агент внутри 1С.">
+<meta name="description" content="ТОО «DARSA Solutions»: iDüken — касса и склад магазина, ToiApp — всё для тоя в вашем городе, Bota — ИИ-агент внутри 1С. Казахстан, тенге, казахский и русский.">
+<meta property="og:title" content="Darsa Solutions — программы для бизнеса в Казахстане">
+<meta property="og:description" content="Касса и склад магазина, поиск всего для тоя, ИИ-агент в 1С.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@500;800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#ffffff;
-    --ink:#17161a;
-    --mist:#6e6b76;
-    --line:#e6e4ea;
-    --duken:#f0641e;
-    --toi:#c8264f;
-    --bota:#1e7b5f;
-    --display:"Geologica", "Arial Black", sans-serif;
-    --body:"Onest", "Segoe UI", Arial, sans-serif;
-    --mono:"JetBrains Mono", Consolas, monospace;
-    --w: min(1180px, 100% - 2 * clamp(20px, 5vw, 64px));
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:var(--body);font-size:1.0625rem;line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit}
-  :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
-  .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:.5rem .75rem;z-index:10}
-  .skip:focus{left:8px}
-  .wrap{width:var(--w);margin-inline:auto}
+:root{
+  --bone:#fbf9f4;
+  --ink:#121216;
+  --mute:#6f6c66;
+  --line:#e3dfd5;
+  --duken:#d1500d;
+  --toi:#b31c44;
+  --bota:#0f6a52;
+  --display:"Rubik","Segoe UI",Arial,sans-serif;
+  --body:"Manrope","Segoe UI",Arial,sans-serif;
+  --mono:"JetBrains Mono",Consolas,monospace;
+  --w:min(1160px,100% - 2*clamp(16px,5vw,48px));
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bone);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:700;letter-spacing:-.03em;text-wrap:balance}
+p{text-wrap:pretty}
+a{color:inherit}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px;border-radius:4px}
+.wrap{width:var(--w);margin-inline:auto}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bone);padding:8px 12px;z-index:30}
+.skip:focus{left:8px}
 
-  /* nav */
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 0}
-  .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
-  .logo{width:auto;height:1.45rem;flex:none;display:block}
-  .brand span{display:inline-flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
-  .brand small{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--mist);letter-spacing:.06em;text-transform:uppercase}
-  .nav ul{list-style:none;display:flex;gap:1.5rem;margin:0;padding:0}
-  .nav li a{text-decoration:none;font-weight:500;font-size:.95rem;padding:.25rem 0;border-bottom:2px solid transparent}
-  .nav li a:hover{border-bottom-color:currentColor}
-  .nav li a[data-p="duken"]:hover{color:var(--duken)}
-  .nav li a[data-p="toi"]:hover{color:var(--toi)}
-  .nav li a[data-p="bota"]:hover{color:var(--bota)}
-  @media (max-width:640px){.nav ul{display:none}}
+/* ornament band */
+.oyu{display:block;width:100%;height:60px}
+.oyu.tall{height:120px}
 
-  /* hero */
-  .hero{padding:clamp(2.5rem,7vw,6rem) 0 clamp(3rem,8vw,7rem)}
-  .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);margin:0 0 1.5rem}
-  .words{list-style:none;margin:0 0 clamp(2rem,4vw,3rem);padding:0;display:grid;gap:clamp(.25rem,1vw,.6rem)}
-  .words li{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:clamp(.75rem,2vw,1.5rem)}
-  .words b{font-family:var(--display);font-weight:800;font-size:clamp(3.2rem,13vw,8.5rem);line-height:.98;letter-spacing:-.03em;text-transform:uppercase}
-  .words span{font-family:var(--mono);font-size:clamp(.78rem,1.4vw,1rem);color:var(--mist);white-space:nowrap}
-  .words .duken b{color:var(--duken)}
-  .words .toi b{color:var(--toi)}
-  .words .bota b{color:var(--bota)}
-  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(1.35rem,2.8vw,2.1rem);line-height:1.25;letter-spacing:-.02em;margin:0 0 1rem;max-width:22ch}
-  .hero p{max-width:56ch;margin:0 0 2rem;font-size:1.125rem;color:#3d3b45}
-  @media (min-width:1040px){
-    .hero .split{display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,5vw,5rem);align-items:end}
-    .words{margin-bottom:0}
-    .hero h1{font-size:1.75rem;max-width:24ch}
-    .hero .thesis{padding-bottom:.35em}
-  }
-  @media (max-width:640px){
-    .eyebrow{font-size:.7rem;letter-spacing:.04em}
-    .words li{grid-template-columns:1fr;row-gap:.15rem}
-    .words span{white-space:normal}
-  }
-  .cta{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center}
-  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:.85rem 1.35rem;border-radius:4px;background:var(--ink);color:#fff}
-  .btn:hover{background:#000}
-  .link{font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--line)}
-  .link:hover{border-bottom-color:currentColor}
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--display);font-weight:700;letter-spacing:-.02em}
+.brand svg.logo{height:20px;width:auto;display:block}
+.nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:14px;font-weight:500;padding:4px 0;border-bottom:2px solid transparent;transition:border-color .4s var(--ease)}
+.nav ul a:hover{border-bottom-color:currentColor}
+.btn{display:inline-flex;align-items:center;text-decoration:none;font-weight:600;font-size:16px;padding:12px 20px;border-radius:999px;background:var(--ink);color:var(--bone);transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn.sm{font-size:14px;padding:8px 16px}
+.btn.light{background:var(--bone);color:var(--ink)}
+.ghost{text-decoration:none;font-weight:500;border-bottom:2px solid var(--line);transition:border-color .4s var(--ease)}
+.ghost:hover{border-bottom-color:currentColor}
+@media (max-width:880px){.nav ul{display:none}}
 
-  /* load sequence */
-  @media (prefers-reduced-motion:no-preference){
-    .words li{opacity:0;transform:translateY(.35em);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-    .words li:nth-child(2){animation-delay:.18s}
-    .words li:nth-child(3){animation-delay:.36s}
-    .hero h1,.hero p,.cta{opacity:0;animation:rise .7s .6s cubic-bezier(.2,.7,.2,1) forwards}
-    @keyframes rise{to{opacity:1;transform:none}}
-  }
+/* hero */
+.hero{padding:clamp(32px,6vw,72px) 0 0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 24px}
+h1{font-size:clamp(36px,7vw,72px);line-height:1;max-width:680px}
+h1 em{font-style:normal;display:block}
+h1 .a{color:var(--duken)}
+h1 .b{color:var(--toi)}
+h1 .c{color:var(--bota)}
+.hero .sub{max-width:600px;font-size:18px;color:#43413c;margin:24px 0 32px}
+.cta{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center}
+.proof{display:flex;flex-wrap:wrap;gap:8px 24px;margin:32px 0 40px;padding:0;list-style:none;font-family:var(--mono);font-size:12px;color:var(--mute)}
+.band{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-radius:20px;overflow:hidden}
+.band div{padding:16px 20px 8px;color:#fff}
+.band .n{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.6vw,28px);letter-spacing:-.03em}
+.band .k{font-family:var(--mono);font-size:12px;opacity:.85;display:block;margin-bottom:8px}
+.band .d{background:var(--duken)}
+.band .t{background:var(--toi)}
+.band .b{background:var(--bota)}
+@media (max-width:700px){.band{grid-template-columns:1fr}}
 
-  /* products */
-  .product{border-top:1px solid var(--line);padding:clamp(3rem,7vw,6rem) 0}
-  .product .grid{display:grid;grid-template-columns:minmax(220px,2fr) 3fr;gap:clamp(1.5rem,5vw,5rem);align-items:start}
-  .mark{aspect-ratio:1/1;border-radius:6px;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1rem,2.4vw,1.75rem);color:#fff;position:sticky;top:1.5rem}
-  .mark b{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.2vw,4.6rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;word-break:break-word}
-  .mark span{font-family:var(--mono);font-size:.8rem;opacity:.9}
-  .product--duken .mark{background:var(--duken)}
-  .product--toi .mark{background:var(--toi)}
-  .product--bota .mark{background:var(--bota)}
-  .product h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3vw,2.3rem);letter-spacing:-.02em;line-height:1.1;margin:0 0 .5rem}
-  .product .tag{font-size:1.25rem;font-weight:500;margin:0 0 1.5rem;max-width:40ch;line-height:1.35}
-  .product--duken h2{color:var(--duken)}
-  .product--toi h2{color:var(--toi)}
-  .product--bota h2{color:var(--bota)}
-  .facts{list-style:none;margin:0 0 1.75rem;padding:0;display:grid;gap:1rem;max-width:60ch}
-  .facts li{padding-left:1.1rem;position:relative}
-  .facts li::before{content:"";position:absolute;left:0;top:.62em;width:.45rem;height:.45rem;border-radius:50%;background:currentColor}
-  .facts strong{display:block;font-weight:600}
-  .facts p{margin:.15rem 0 0;color:#3d3b45}
-  .price{font-family:var(--mono);font-size:.95rem;color:var(--mist);margin:0 0 1.25rem}
-  .price b{color:var(--ink);font-weight:500}
-  .note{font-family:var(--mono);font-size:.78rem;color:var(--mist);margin:.75rem 0 0}
-  @media (max-width:760px){
-    .product .grid{grid-template-columns:1fr}
-    .mark{aspect-ratio:auto;position:static;flex-direction:row;align-items:baseline;gap:1rem}
-  }
+/* reveal */
+.reveal{padding:clamp(56px,9vw,104px) 0}
+.reveal p{font-family:var(--display);font-weight:500;font-size:clamp(26px,4.4vw,44px);line-height:1.18;letter-spacing:-.03em;max-width:680px;margin:0}
+.reveal .w{color:rgba(18,18,22,.26);transition:color .7s var(--ease)}
+.reveal .w.on{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.reveal .w{color:var(--ink)}}
 
-  /* about */
-  .about{border-top:1px solid var(--line);padding:clamp(3rem,7vw,6rem) 0}
-  .about .grid{display:grid;grid-template-columns:minmax(220px,2fr) 3fr;gap:clamp(1.5rem,5vw,5rem)}
-  .about h2{font-family:var(--display);font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin:0}
-  .about p{margin:0 0 1rem;max-width:60ch;font-size:1.125rem}
-  dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.5rem;margin:1.75rem 0 0;font-family:var(--mono);font-size:.88rem}
-  dt{color:var(--mist)}
-  dd{margin:0}
-  @media (max-width:760px){.about .grid{grid-template-columns:1fr}}
+/* product fields */
+.field{color:#fff;padding:clamp(40px,7vw,80px) 0;position:relative;overflow:hidden}
+.field.d{background:var(--duken)}
+.field.t{background:var(--toi)}
+.field.b{background:var(--bota)}
+.field .orn{position:absolute;inset:auto 0 0 0;opacity:.22;color:#fff;pointer-events:none}
+.field .grid{display:grid;gap:clamp(24px,4vw,56px);grid-template-columns:1fr;position:relative}
+.field .grid>*{min-width:0}
+@media (min-width:900px){.field .grid{grid-template-columns:340px 1fr}}
+.field h2{font-size:clamp(32px,5vw,52px);line-height:1}
+.field .kk{font-family:var(--mono);font-size:12px;opacity:.85;margin:8px 0 0}
+.field .lead{font-size:20px;font-weight:600;margin:0 0 24px;max-width:560px;line-height:1.3}
+.facts{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));max-width:760px}
+.facts li{border-top:2px solid rgba(255,255,255,.35);padding-top:12px}
+.facts strong{display:block;font-weight:700;margin-bottom:4px}
+.facts p{margin:0;font-size:14px;color:rgba(255,255,255,.86)}
+.price{font-family:var(--mono);font-size:14px;margin:0 0 16px;color:rgba(255,255,255,.86)}
+.price b{color:#fff;font-weight:500}
+.note{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.8);margin:16px 0 0}
+.pill{display:inline-block;font-family:var(--mono);font-size:12px;border:1.5px solid rgba(255,255,255,.5);border-radius:999px;padding:4px 12px;margin-bottom:16px}
 
-  /* footer */
-  footer{border-top:1px solid var(--line);padding:2rem 0 3rem}
-  footer .row{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:baseline;font-size:.9rem;color:var(--mist)}
-  footer a{text-decoration:none}
-  footer a:hover{color:var(--ink)}
-  footer .tel{font-family:var(--mono);color:var(--ink);font-size:1.05rem}
-  footer .sign{display:flex;align-items:center;gap:.75rem}
-  footer .logo{height:1.15rem}
+/* steps + faq */
+.section{padding:clamp(48px,8vw,88px) 0}
+h2.sec{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px}
+.sec-lead{color:var(--mute);font-size:18px;max-width:600px;margin:0 0 40px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.steps li{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:24px 0;border-top:2px solid var(--line);align-items:start}
+.steps .n{font-family:var(--display);font-weight:700;font-size:24px;color:var(--line)}
+.steps h3{font-size:20px;margin-bottom:4px}
+.steps p{margin:0;color:#43413c;max-width:600px}
+details{border-top:2px solid var(--line);padding:20px 0}
+details:last-of-type{border-bottom:2px solid var(--line)}
+details summary{cursor:pointer;list-style:none;font-family:var(--display);font-weight:500;font-size:18px;letter-spacing:-.02em;display:flex;justify-content:space-between;gap:16px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-family:var(--mono);color:var(--mute)}
+details[open] summary::after{content:"−"}
+details p{margin:12px 0 0;max-width:680px;color:#43413c}
+
+/* final */
+.final{background:var(--ink);color:var(--bone);padding:clamp(48px,8vw,96px) 0;position:relative;overflow:hidden}
+.final .orn{position:absolute;inset:0 0 auto 0;opacity:.16;color:var(--bone)}
+.final h2{font-size:clamp(30px,5vw,52px);line-height:1.04;max-width:680px;position:relative}
+.final p{max-width:560px;font-size:18px;color:#b8b4ab;margin:16px 0 32px;position:relative}
+.final .cta{position:relative}
+.tel{font-family:var(--mono);font-size:20px;text-decoration:none}
+footer{padding:32px 0 48px;font-size:14px;color:var(--mute)}
+footer .row{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:baseline}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-family:var(--mono);font-size:12px;margin:0 0 24px}
+dt{color:var(--mute)}dd{margin:0}
+
+@media (prefers-reduced-motion:no-preference){
+  [data-rise]{opacity:0;transform:translateY(16px);filter:blur(6px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
+  [data-rise].in{opacity:1;transform:none;filter:none}
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
 
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <pattern id="oyu-w" width="120" height="60" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+        <path d="M4 58 C 4 26, 26 14, 38 30 C 46 41, 32 52, 26 42"/>
+        <path d="M116 58 C 116 26, 94 14, 82 30 C 74 41, 88 52, 94 42"/>
+        <path d="M60 58 C 60 40, 46 22, 60 6 C 74 22, 60 40, 60 58"/>
+      </g>
+    </pattern>
+    <pattern id="oyu-l" width="120" height="60" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#ddd7c9" stroke-width="3" stroke-linecap="round">
+        <path d="M4 58 C 4 26, 26 14, 38 30 C 46 41, 32 52, 26 42"/>
+        <path d="M116 58 C 116 26, 94 14, 82 30 C 74 41, 88 52, 94 42"/>
+        <path d="M60 58 C 60 40, 46 22, 60 6 C 74 22, 60 40, 60 58"/>
+      </g>
+    </pattern>
+  </defs>
+</svg>
+
 <header class="wrap nav">
   <a class="brand" href="#top">
-    <svg class="logo" viewBox="0 0 48 40" aria-hidden="true" focusable="false">
-      <path d="M0 0 H42 A6 6 0 0 1 42 12 H0 Z" fill="#f0641e"/>
-      <path d="M0 14 H23 A6 6 0 0 1 23 26 H0 Z" fill="#c8264f"/>
-      <path d="M0 28 H32 A6 6 0 0 1 32 40 H0 Z" fill="#1e7b5f"/>
-    </svg>
-    <span>Darsa Solutions <small>Казахстан</small></span>
+    <svg class="logo" viewBox="0 0 48 40" aria-hidden="true"><path d="M0 0 H42 A6 6 0 0 1 42 12 H0 Z" fill="#d1500d"/><path d="M0 14 H23 A6 6 0 0 1 23 26 H0 Z" fill="#b31c44"/><path d="M0 28 H32 A6 6 0 0 1 32 40 H0 Z" fill="#0f6a52"/></svg>
+    Darsa Solutions
   </a>
-  <nav aria-label="Продукты">
-    <ul>
-      <li><a href="#iduken" data-p="duken">iDüken</a></li>
-      <li><a href="#toiapp" data-p="toi">ToiApp</a></li>
-      <li><a href="#bota" data-p="bota">Bota</a></li>
-      <li><a href="#contacts">Контакты</a></li>
-    </ul>
-  </nav>
+  <nav aria-label="Разделы"><ul>
+    <li><a href="#iduken">iDüken</a></li>
+    <li><a href="#toiapp">ToiApp</a></li>
+    <li><a href="#bota">Bota</a></li>
+    <li><a href="#faq">Вопросы</a></li>
+  </ul></nav>
+  <a class="btn sm" href="tel:+77019500252">Позвонить</a>
 </header>
 
 <main id="main">
-  <section class="hero wrap" id="top">
-    <p class="eyebrow">ТОО Darsa Solutions · программы для бизнеса в Казахстане</p>
-    <div class="split">
-      <ul class="words" aria-label="Три продукта">
-        <li class="duken"><b lang="kk">Дүкен</b><span>магазин → iDüken</span></li>
-        <li class="toi"><b lang="kk">Той</b><span>праздник → ToiApp</span></li>
-        <li class="bota"><b lang="kk">Бота</b><span>казахское женское имя → Bota, ИИ‑агент в 1С</span></li>
+<section class="hero wrap" id="top">
+  <p class="eyebrow">ТОО «DARSA Solutions» · Қазақстан · БИН 260940002289</p>
+  <h1>Үш сөз.<br><em>Три программы<br>для дел, которые<br>у бизнеса уже есть.</em></h1>
+  <p class="sub">Дүкен нужно считать. Той нужно собрать. В 1С нужно получить ответ. Мы не придумываем новые потребности, а закрываем те, что появились без нас.</p>
+  <div class="cta">
+    <a class="btn" href="#iduken">Смотреть продукты</a>
+    <a class="ghost" href="tel:+77019500252">+7 701 950 02 52</a>
+  </div>
+  <ul class="proof">
+    <li>· iDüken от 15 990 ₸ в месяц</li>
+    <li>· касса работает без интернета</li>
+    <li>· қазақша және орысша</li>
+  </ul>
+
+  <div class="band">
+    <div class="d"><span class="n">iDüken</span><span class="k">дүкен — магазин</span></div>
+    <div class="t"><span class="n">ToiApp</span><span class="k">той — праздник</span></div>
+    <div class="b"><span class="n">Bota</span><span class="k">Бота — қазақ есімі</span></div>
+  </div>
+  <svg class="oyu" style="margin-top:16px" aria-hidden="true"><rect width="100%" height="100%" fill="url(#oyu-l)"/></svg>
+</section>
+
+<section class="reveal wrap">
+  <p data-reveal>Магазин надо считать. На той надо найти зал и тамаду. В 1С надо получить ответ. Darsa делает ровно это, без лишних обещаний.</p>
+</section>
+
+<section class="field d" id="iduken">
+  <svg class="oyu tall orn" aria-hidden="true"><rect width="100%" height="100%" fill="url(#oyu-w)"/></svg>
+  <div class="wrap grid">
+    <div>
+      <h2>iDüken</h2>
+      <p class="kk">дүкен — магазин · розница</p>
+    </div>
+    <div>
+      <p class="lead">Касса, склад и деньги магазина в одной программе. Видно, где заработали, а где потеряли.</p>
+      <ul class="facts">
+        <li><strong>Касса не останавливается без интернета</strong><p>Чеки копятся на компьютере и уходят на сервер, как только связь вернётся. Смена закрывается одной суммой.</p></li>
+        <li><strong>Склад ведётся сам</strong><p>Приход, списания, перемещения между точками, инвентаризация. Каждое движение остаётся в материальном отчёте.</p></li>
+        <li><strong>Несколько точек в одном кабинете</strong><p>Товары и цены общие, остатки и выручка у каждой свои. Сотрудник видит свой магазин, владелец видит все.</p></li>
+        <li><strong>Названия из Национального каталога</strong><p>Сканируете штрихкод, название подставляется из справочника НКТ по коду NTIN.</p></li>
       </ul>
-      <div class="thesis">
-        <h1>Три обычных слова. Три программы для дел, которые у бизнеса уже есть.</h1>
-        <p>Мы не придумываем новые потребности. Магазин надо считать, на той надо найти зал и тамаду, в 1С надо получить ответ. Darsa делает инструменты ровно для этого, на русском и казахском, в тенге и по правилам Казахстана.</p>
-        <div class="cta">
-          <a class="btn" href="#iduken">Смотреть продукты</a>
-          <a class="link" href="tel:+77019500252">Позвонить: +7 701 950 02 52</a>
-        </div>
-      </div>
+      <p class="price">от <b>15 990 ₸</b> в месяц за точку · <b>89 990 ₸</b> за сеть до 10 точек</p>
+      <a class="btn light sm" href="https://iduken.kz" rel="noopener">Открыть iduken.kz</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="product product--duken" id="iduken">
-    <div class="wrap grid">
-      <div class="mark" aria-hidden="true"><b lang="kk">Дүкен</b><span>розница</span></div>
-      <div>
-        <h2>iDüken</h2>
-        <p class="tag">Касса, склад и деньги магазина в одной программе. Видно, где заработали, а где потеряли.</p>
-        <ul class="facts">
-          <li><strong>Касса не останавливается без интернета</strong><p>Чеки копятся на компьютере и уходят на сервер, как только связь вернётся. Смена закрывается одной суммой, расхождение видно сразу.</p></li>
-          <li><strong>Склад ведётся сам</strong><p>Приход по накладной, списания, перемещения между точками, инвентаризация. Каждое движение остаётся в материальном отчёте.</p></li>
-          <li><strong>Несколько точек в одном кабинете</strong><p>Товары и цены общие, остатки и выручка у каждой свои. Сотрудник видит свой магазин, владелец видит все.</p></li>
-          <li><strong>Название товара из Национального каталога</strong><p>Сканируете штрихкод, название подставляется из справочника НКТ по коду NTIN.</p></li>
-          <li><strong>Владелец смотрит с телефона</strong><p>Выручка, прибыль, что заканчивается, что залежалось, что ушло в минус.</p></li>
-        </ul>
-        <p class="price">от <b>15 990 ₸</b> в месяц за одну точку · <b>89 990 ₸</b> за сеть до 10 точек</p>
-        <a class="link" href="https://iduken.kz" rel="noopener">Открыть iduken.kz</a>
-      </div>
+<section class="field t" id="toiapp">
+  <svg class="oyu tall orn" aria-hidden="true"><rect width="100%" height="100%" fill="url(#oyu-w)"/></svg>
+  <div class="wrap grid">
+    <div>
+      <h2>ToiApp</h2>
+      <p class="kk">той — праздник · маркетплейс</p>
     </div>
-  </section>
+    <div>
+      <p class="pill">Готовится к запуску</p>
+      <p class="lead">Всё для тоя в вашем городе. Ресторан, тамада, артисты, повара, фото и видео, ивент-агентства.</p>
+      <ul class="facts">
+        <li><strong>Ищете там, где живёте</strong><p>Выбираете город и видите, кто работает рядом, от зала на 300 гостей до кавер-группы на вечер.</p></li>
+        <li><strong>Свадьба, юбилей и любой другой той</strong><p>Площадка одна, а той у каждого свой. Фильтры собираются под ваш случай.</p></li>
+        <li><strong>Договариваетесь напрямую</strong><p>Фото работ, цены и отзывы в анкете. Пишете исполнителю сами, без посредников.</p></li>
+        <li><strong>Исполнителям тоже сюда</strong><p>Ресторан, тамада или студия размещают анкету и получают заявки из своего города.</p></li>
+      </ul>
+      <a class="btn light sm" href="tel:+77019500252">Узнать о запуске</a>
+    </div>
+  </div>
+</section>
 
-  <section class="product product--toi" id="toiapp">
-    <div class="wrap grid">
-      <div class="mark" aria-hidden="true"><b lang="kk">Той</b><span>праздники</span></div>
-      <div>
-        <h2>ToiApp</h2>
-        <p class="tag">Всё для тоя в вашем городе. Ресторан, тамада, артисты, повара, фото и видео, ивент‑агентства.</p>
-        <ul class="facts">
-          <li><strong>Ищете там, где живёте</strong><p>Выбираете город и видите, кто работает рядом: рестораны, тамада, артисты, повара, фотографы и видеографы, ивент‑агентства.</p></li>
-          <li><strong>Свадьба, юбилей и любой другой той</strong><p>Один зал на 300 гостей или кавер‑группа на вечер. Площадка одна, а той у каждого свой.</p></li>
-          <li><strong>Сравниваете и договариваетесь напрямую</strong><p>Фото работ, цены и отзывы в анкете. Пишете исполнителю сами, без посредников.</p></li>
-          <li><strong>Исполнителям тоже сюда</strong><p>Ресторан, тамада или студия размещают анкету и получают заявки из своего города.</p></li>
-        </ul>
-        <a class="link" href="tel:+77019500252">Узнать о запуске</a>
-      </div>
+<section class="field b" id="bota">
+  <svg class="oyu tall orn" aria-hidden="true"><rect width="100%" height="100%" fill="url(#oyu-w)"/></svg>
+  <div class="wrap grid">
+    <div>
+      <h2>Bota</h2>
+      <p class="kk">Бота — қазақ есімі · ИИ-агент в 1С</p>
     </div>
-  </section>
+    <div>
+      <p class="lead">ИИ-агент, который живёт внутри вашей 1С. Спрашиваете словами, получаете данные, документы и объяснения.</p>
+      <ul class="facts">
+        <li><strong>Отвечает по вашей базе</strong><p>«Сколько мы должны поставщикам на конец месяца?» Bota строит запрос к 1С и отвечает цифрой, а не ссылкой на отчёт.</p></li>
+        <li><strong>Создаёт и заполняет документы</strong><p>Счёт, накладная, перемещение. Bota подготовит, бухгалтер проверит и проведёт.</p></li>
+        <li><strong>Действует только там, где разрешено</strong><p>Права пользователя 1С остаются главными. Агент не видит и не меняет то, что закрыто для человека.</p></li>
+        <li><strong>Работает с вашей конфигурацией</strong><p>Бухгалтерия, Управление торговлей, Розница и доработанные базы.</p></li>
+      </ul>
+      <a class="btn light sm" href="tel:+77019500252">Обсудить внедрение</a>
+      <p class="note">Описание функций требует подтверждения владельца продукта.</p>
+    </div>
+  </div>
+</section>
 
-  <section class="product product--bota" id="bota">
-    <div class="wrap grid">
-      <div class="mark" aria-hidden="true"><b lang="kk">Бота</b><span>ИИ‑агент в 1С</span></div>
-      <div>
-        <h2>Bota</h2>
-        <p class="tag">ИИ‑агент, который живёт внутри вашей 1С. Спрашиваете словами, получаете данные, документы и объяснения.</p>
-        <ul class="facts">
-          <li><strong>Отвечает по вашей базе</strong><p>«Сколько мы должны поставщикам на конец месяца?» Bota строит запрос к 1С и отвечает цифрой, а не ссылкой на отчёт.</p></li>
-          <li><strong>Создаёт и заполняет документы</strong><p>Счёт, накладная, перемещение. Bota подготовит, бухгалтер проверит и проведёт.</p></li>
-          <li><strong>Действует только там, где разрешено</strong><p>Права пользователя 1С остаются главными. Агент не видит и не меняет то, что закрыто для человека.</p></li>
-          <li><strong>Работает с вашей конфигурацией</strong><p>Бухгалтерия, Управление торговлей, Розница и доработанные базы.</p></li>
-        </ul>
-        <a class="link" href="tel:+77019500252">Обсудить внедрение</a>
-        <p class="note">Описание функций требует подтверждения владельца продукта.</p>
-      </div>
-    </div>
-  </section>
+<section class="section wrap">
+  <h2 class="sec">Как начинается работа</h2>
+  <p class="sec-lead">Три шага, без долгих презентаций.</p>
+  <ol class="steps">
+    <li><span class="n">01</span><div><h3>Звонок на 20 минут</h3><p>Рассказываете, как устроен магазин или база. Мы говорим, подходит наш продукт или нет.</p></div></li>
+    <li><span class="n">02</span><div><h3>Настройка под ваш бизнес</h3><p>Заводим точки, товары и права сотрудников. Показываем на ваших данных, а не на демо-примере.</p></div></li>
+    <li><span class="n">03</span><div><h3>Работа и поддержка</h3><p>Отвечаем на казахском и русском. Обновления приходят сами, платить за них отдельно не нужно.</p></div></li>
+  </ol>
+</section>
 
-  <section class="about" id="about">
-    <div class="wrap grid">
-      <h2>О компании</h2>
-      <div>
-        <p>Darsa Solutions — небольшая команда разработчиков в Казахстане. Мы делаем программы, которые работают в реальных условиях: когда в магазине пропал интернет, когда до тоя две недели, а тамады и зала ещё нет, когда бухгалтеру нужен ответ до обеда, а не отчёт на сорок страниц.</p>
-        <p>Каждый продукт закрывает одну задачу целиком, а не десять задач наполовину.</p>
-        <dl>
-          <dt>Компания</dt><dd>ТОО «DARSA Solutions»</dd>
-          <dt>БИН</dt><dd>260940002289</dd>
-          <dt>Страна</dt><dd>Республика Казахстан</dd>
-          <dt>Языки</dt><dd>Казахский, русский</dd>
-        </dl>
-      </div>
+<section class="section wrap" id="about">
+  <h2 class="sec">О компании</h2>
+  <p class="sec-lead">Небольшая команда разработчиков в Казахстане.</p>
+  <p style="max-width:680px;font-size:18px;margin:0 0 16px">Мы делаем программы, которые работают в реальных условиях: когда в магазине пропал интернет, когда до тоя две недели, а тамады и зала ещё нет, когда бухгалтеру нужен ответ до обеда, а не отчёт на сорок страниц.</p>
+  <p style="max-width:680px;font-size:18px;margin:0">Каждый продукт закрывает одну задачу целиком, а не десять задач наполовину.</p>
+</section>
+
+<section class="section wrap" id="faq">
+  <h2 class="sec">Вопросы, которые задают до оплаты</h2>
+  <p class="sec-lead">Если вашего вопроса тут нет, позвоните.</p>
+  <details open><summary>Что будет с кассой, если пропал интернет?</summary><p>iDüken продолжает пробивать чеки. Они сохраняются на компьютере и уходят на сервер, как только связь вернётся. Смена закрывается одной суммой, расхождение видно сразу.</p></details>
+  <details><summary>Сколько стоит iDüken?</summary><p>15 990 ₸ в месяц за одну точку. Для сети до десяти точек — 89 990 ₸ в месяц. Оплата в тенге, по договору с ТОО, счёт на юрлицо.</p></details>
+  <details><summary>У меня три магазина. Их видно вместе?</summary><p>Да. Товары и цены общие, остатки и выручка считаются по каждой точке отдельно. Продавец видит только свой магазин, владелец — все сразу, в том числе с телефона.</p></details>
+  <details><summary>Нужно ли вбивать названия товаров руками?</summary><p>Нет. Сканируете штрихкод, и название подставляется из справочника Национального каталога товаров по коду NTIN.</p></details>
+  <details><summary>ToiApp уже можно пользоваться?</summary><p>Сервис готовится к запуску. Оставьте номер по телефону, и мы позовём, когда откроется ваш город. Исполнителям стоит записаться заранее.</p></details>
+  <details><summary>Bota подключится к моей 1С?</summary><p>Bota работает с типовыми конфигурациями (Бухгалтерия, Управление торговлей, Розница) и с доработанными базами. Права пользователя остаются главными.</p></details>
+</section>
+
+<section class="final" id="contacts">
+  <svg class="oyu tall orn" aria-hidden="true"><rect width="100%" height="100%" fill="url(#oyu-w)"/></svg>
+  <div class="wrap">
+    <h2>Позвоните и опишите свой случай.</h2>
+    <p>Ответит человек из команды. Если задача не наша, скажем прямо и подскажем, к кому идти.</p>
+    <div class="cta">
+      <a class="btn light" href="tel:+77019500252">Позвонить +7 701 950 02 52</a>
     </div>
-  </section>
+  </div>
+</section>
 </main>
 
-<footer id="contacts">
-  <div class="wrap row">
-    <div class="sign">
-      <svg class="logo" viewBox="0 0 48 40" aria-hidden="true" focusable="false">
-        <path d="M0 0 H42 A6 6 0 0 1 42 12 H0 Z" fill="#f0641e"/>
-        <path d="M0 14 H23 A6 6 0 0 1 23 26 H0 Z" fill="#c8264f"/>
-        <path d="M0 28 H32 A6 6 0 0 1 32 40 H0 Z" fill="#1e7b5f"/>
-      </svg>
-      <a class="tel" href="tel:+77019500252">+7 701 950 02 52</a>
-    </div>
+<footer class="wrap">
+  <dl>
+    <dt>Компания</dt><dd>ТОО «DARSA Solutions»</dd>
+    <dt>БИН</dt><dd>260940002289</dd>
+    <dt>Страна</dt><dd>Республика Казахстан</dd>
+    <dt>Языки</dt><dd>қазақша, русский</dd>
+  </dl>
+  <div class="row">
     <span>© 2026 ТОО «DARSA Solutions» · iDüken · ToiApp · Bota</span>
+    <span><a href="#top">Наверх</a></span>
   </div>
 </footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var t = document.querySelector('[data-reveal]');
+  if (t) {
+    var words = t.textContent.trim().split(/\s+/);
+    t.textContent = '';
+    words.forEach(function(w, i){
+      var s = document.createElement('span');
+      s.className = 'w'; s.textContent = w;
+      t.appendChild(s);
+      if (i < words.length - 1) t.appendChild(document.createTextNode(' '));
+    });
+    if (reduce) { t.querySelectorAll('.w').forEach(function(s){ s.classList.add('on'); }); }
+    else {
+      var wo = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (!e.isIntersecting) return;
+          var spans = Array.prototype.slice.call(t.querySelectorAll('.w'));
+          var idx = spans.indexOf(e.target);
+          setTimeout(function(){ e.target.classList.add('on'); }, idx * 55);
+          wo.unobserve(e.target);
+        });
+      }, { rootMargin: '-20% 0px -35% 0px' });
+      t.querySelectorAll('.w').forEach(function(s){ wo.observe(s); });
+    }
+  }
+  if (!reduce) {
+    var els = document.querySelectorAll('.field .grid > *, .steps li, .final h2, .final p, .band');
+    els.forEach(function(el){ el.setAttribute('data-rise',''); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
 </body>
 </html>
