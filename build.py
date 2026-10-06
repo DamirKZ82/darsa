@@ -13,6 +13,9 @@ from content import (C, GA_ID, GOOGLE_SITE_VERIFICATION, LANGS, ORIGIN,
                      PHONE, PHONE_HREF)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+# Публикуется только эта папка: она и есть корень сайта на сервере.
+# Исходники сборки (build.py, content.py) лежат рядом и наружу не попадают.
+PUBLIC = os.path.join(ROOT, "public")
 
 # --------------------------------------------------------------------- токены
 
@@ -547,7 +550,7 @@ def render(lang):
 
 def main():
     for lang, prefix, _ in LANGS:
-        out = os.path.join(ROOT, prefix, "index.html") if prefix else os.path.join(ROOT, "index.html")
+        out = os.path.join(PUBLIC, prefix, "index.html") if prefix else os.path.join(PUBLIC, "index.html")
         os.makedirs(os.path.dirname(out), exist_ok=True)
         with open(out, "w", encoding="utf-8", newline="\n") as f:
             f.write(render(lang))
