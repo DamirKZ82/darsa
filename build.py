@@ -9,7 +9,8 @@ import html
 import json
 import os
 
-from content import C, LANGS, ORIGIN, PHONE, PHONE_HREF
+from content import (C, GA_ID, GOOGLE_SITE_VERIFICATION, LANGS, ORIGIN,
+                     PHONE, PHONE_HREF)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -305,6 +306,28 @@ MOON = ('<svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColo
         '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>')
 
 
+GTAG = """<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=__ID__"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '__ID__');
+</script>"""
+
+
+def head_tags():
+    """Подтверждение прав Search Console и счётчик GA4 — только если заполнены."""
+    out = []
+    if GOOGLE_SITE_VERIFICATION:
+        out.append(
+            '<meta name="google-site-verification" content="'
+            + html.escape(GOOGLE_SITE_VERIFICATION) + '">')
+    if GA_ID:
+        out.append(GTAG.replace("__ID__", GA_ID))
+    return ("\n".join(out) + "\n") if out else ""
+
+
 def e(s):
     return html.escape(str(s), quote=False)
 
@@ -404,7 +427,7 @@ def render(lang):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(c["title"])}</title>
+{head_tags()}<title>{e(c["title"])}</title>
 <meta name="description" content="{html.escape(c["desc"])}">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#fbf9f4">

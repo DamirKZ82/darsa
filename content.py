@@ -6,6 +6,11 @@ PHONE_HREF = "tel:+77019500252"
 BIN = "260940002289"
 ORIGIN = "https://darsa.kz"
 
+# Подтверждение прав в Google Search Console и аналитика.
+# Заполнить одно из двух и пересобрать: python build.py
+GOOGLE_SITE_VERIFICATION = ""   # токен из meta-тега Search Console, без <meta ...>
+GA_ID = ""                      # идентификатор потока GA4, вида G-XXXXXXXXXX
+
 LANGS = [
     ("ru", "", "RU"),
     ("kk", "kk/", "ҚАЗ"),
